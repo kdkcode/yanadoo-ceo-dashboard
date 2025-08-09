@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO 브리핑 관리자 페이지</title>
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --fg: #1f2937;
+            --muted: #6b7280;
+            --card: #ffffff;
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warn: #f59e0b;
+            --danger: #dc2626;
+            --border: #e5e7eb;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0f172a, #111827);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .btn-danger {
+            background: var(--danger) !important;
+        }
+        
+        .btn-danger:hover {
+            background: #b91c1c !important;
+        }
+        
+        .card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--fg);
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--fg);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .metric-group {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafbfc;
+        }
+        
+        .metric-title {
+            font-weight: 600;
+            color: var(--fg);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #15803d;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .number-input {
+            width: 80px;
+            text-align: center;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .input-label {
+            min-width: 60px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .grid-2, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CEO 브리핑 관리자 페이지</h1>
+            <div class="nav-links">
+                <a href="/" class="nav-link">대시보드 보기</a>
+                <a href="/admin/reset" class="nav-link btn-danger" onclick="return confirm('정말로 데이터를 초기화하시겠습니까?')">초기화</a>
+            </div>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="/admin/update">
+            <!-- Header Section -->
+            <div class="card">
+                <h2 class="section-title">📋 보고서 제목</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">제목</label>
+                    <input type="text" name="header_title" class="form-input" value="{{ data.header.title }}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">부제목</label>
+                    <input type="text" name="header_subtitle" class="form-input" value="{{ data.header.subtitle }}">
+                </div>
+            </div>
+            
+            <!-- KPIs Section -->
+            <div class="card">
+                <h2 class="section-title">📊 핵심 지표 (KPIs)</h2>
+                
+                <div class="grid-2">
+                    <div class="metric-group">
+                        <div class="metric-title">과제 상태 현황</div>
+                        <div class="input-group">
+                            <label class="input-label">완료:</label>
+                            <input type="number" name="task_completed" class="form-input number-input" value="{{ data.kpis.task_status.completed }}" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">진행중:</label>
+                            <input type="number" name="task_in_progress" class="form-input number-input" value="{{ data.kpis.task_status.in_progress }}" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">시작전:</label>
+                            <input type="number" name="task_not_started" class="form-input number-input" value="{{ data.kpis.task_status.not_started }}" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">중단:</label>
+                            <input type="number" name="task_stopped" class="form-input number-input" value="{{ data.kpis.task_status.stopped }}" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="metric-title">핵심 임팩트</div>
+                        <div class="input-group">
+                            <label class="input-label">시간 절감 (h/월):</label>
+                            <input type="number" name="core_time_saved" class="form-input number-input" value="{{ data.kpis.core_impact.time_saved }}" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">비용 절감 (원):</label>
+                            <input type="number" name="core_cost_saved" class="form-input" value="{{ data.kpis.core_impact.cost_saved }}" min="0" step="10000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">현장 효율 - TM 상담 시간 절감 (분/인)</label>
+                    <input type="number" name="field_time_saved" class="form-input number-input" value="{{ data.kpis.field_efficiency.time_saved_per_person }}" min="0">
+                </div>
+            </div>
+            
+            <!-- Objectives Section -->
+            <div class="card">
+                <h2 class="section-title">🎯 목표 (Why/What/How)</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">Why (목적)</label>
+                    <textarea name="obj_why" class="form-textarea" rows="3">{{ data.objectives.why }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">What (대상)</label>
+                    <textarea name="obj_what" class="form-textarea" rows="3">{{ data.objectives.what }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">How (방법)</label>
+                    <textarea name="obj_how" class="form-textarea" rows="3">{{ data.objectives.how }}</textarea>
+                </div>
+            </div>
+            
+            <!-- AI 내재화 등급 기준표 -->
+            <div class="card">
+                <h2 class="section-title">🤖 AI 내재화 등급 기준표</h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    현재 AI 내재화 등급 기준표는 시스템에 하드코딩되어 있습니다. 
+                    사용자가 제공한 기준표에 따라 S~D 등급별로 디자인/기획/행정/개발 분야의 기준이 설정되어 있습니다.
+                </p>
+                
+                <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid var(--info);">
+                    <h4>현재 설정된 등급 기준:</h4>
+                    <ul>
+                        <li><strong>S등급:</strong> 시간단축 + 압도적 성과</li>
+                        <li><strong>A등급:</strong> 시간단축 + 사람이 한 것과 동일한 성과</li>
+                        <li><strong>B등급:</strong> 교육내용 이행</li>
+                        <li><strong>C등급:</strong> 결과물 도출 어려움</li>
+                        <li><strong>D등급:</strong> 태도문제 및 리소스 낭비</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: var(--muted);">
+                        각 등급별로 디자인/영상, 기획, 행정, 개발 분야의 세부 기준이 대시보드에 표시됩니다.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 차트 데이터 정보 -->
+            <div class="card">
+                <h2 class="section-title">📈 차트 데이터 정보</h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    대시보드의 차트들은 위에서 설정한 KPI 데이터를 기반으로 자동 생성됩니다:
+                </p>
+                
+                <div class="grid-4">
+                    <div class="metric-group">
+                        <div class="metric-title">과제 상태 차트</div>
+                        <p style="font-size: 12px; color: var(--muted);">
+                            완료/진행중/시작전/중단 과제 수를 도넛 차트로 표시
+                        </p>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-title">부서별 과제 분포</div>
+                        <p style="font-size: 12px; color: var(--muted);">
+                            각 부서별 과제 수를 막대 차트로 표시
+                        </p>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-title">비용 절감 현황</div>
+                        <p style="font-size: 12px; color: var(--muted);">
+                            항목별 비용 절감액을 파이 차트로 표시
+                        </p>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-title">시간 절감 현황</div>
+                        <p style="font-size: 12px; color: var(--muted);">
+                            업무별 시간 절감량을 막대 차트로 표시
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">변경사항 저장</button>
+                <a href="/" class="btn">대시보드 미리보기</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야나두 AI 도구 관리자 페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-group {
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafbfc;
+        }
+        
+        .metric-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .tool-card {
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fafbfc;
+        }
+        
+        .tool-header {
+            background: #34495e;
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .insight-card {
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafbfc;
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI 도구 관리자 페이지</h1>
+            <div class="nav-links">
+                <a href="/" class="nav-link">보고서 보기</a>
+                <a href="/admin/reset" class="nav-link btn-danger" onclick="return confirm('정말로 데이터를 초기화하시겠습니까?')">초기화</a>
+            </div>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="/admin/update">
+            <!-- Executive Summary Section -->
+            <div class="section">
+                <h2 class="section-title">📊 종합 요약</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">제목</label>
+                    <input type="text" name="exec_title" class="form-input" value="{{ data.executive_summary.title }}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">부제목</label>
+                    <input type="text" name="exec_subtitle" class="form-input" value="{{ data.executive_summary.subtitle }}">
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-group">
+                        <div class="metric-title">7월 총 투자</div>
+                        <div class="form-group">
+                            <label class="form-label">값</label>
+                            <input type="text" name="july_investment_value" class="form-input" value="{{ data.executive_summary.metrics.july_investment.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">설명</label>
+                            <input type="text" name="july_investment_desc" class="form-input" value="{{ data.executive_summary.metrics.july_investment.desc }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="metric-title">8월 예상 비용</div>
+                        <div class="form-group">
+                            <label class="form-label">값</label>
+                            <input type="text" name="august_cost_value" class="form-input" value="{{ data.executive_summary.metrics.august_cost.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">설명</label>
+                            <input type="text" name="august_cost_desc" class="form-input" value="{{ data.executive_summary.metrics.august_cost.desc }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="metric-title">총 콘텐츠 도달</div>
+                        <div class="form-group">
+                            <label class="form-label">값</label>
+                            <input type="text" name="total_reach_value" class="form-input" value="{{ data.executive_summary.metrics.total_reach.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">설명</label>
+                            <input type="text" name="total_reach_desc" class="form-input" value="{{ data.executive_summary.metrics.total_reach.desc }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="metric-title">최고 ROI</div>
+                        <div class="form-group">
+                            <label class="form-label">값</label>
+                            <input type="text" name="highest_roi_value" class="form-input" value="{{ data.executive_summary.metrics.highest_roi.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">설명</label>
+                            <input type="text" name="highest_roi_desc" class="form-input" value="{{ data.executive_summary.metrics.highest_roi.desc }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cost Analysis Section -->
+            <div class="section">
+                <h2 class="section-title">💰 비용 구조 분석</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">섹션 제목</label>
+                    <input type="text" name="cost_title" class="form-input" value="{{ data.cost_analysis.title }}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">알림 제목</label>
+                    <input type="text" name="alert_title" class="form-input" value="{{ data.cost_analysis.alert.title }}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">알림 내용 (HTML 사용 가능)</label>
+                    <textarea name="alert_content" class="form-textarea" rows="4">{{ data.cost_analysis.alert.content }}</textarea>
+                </div>
+            </div>
+            
+            <!-- Top Tool Section -->
+            <div class="section">
+                <h2 class="section-title">🏆 최우수 성과 도구</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-group">
+                        <div class="form-group">
+                            <label class="form-label">도구명</label>
+                            <input type="text" name="top_tool_name" class="form-input" value="{{ data.top_tool.name }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">상태</label>
+                            <input type="text" name="top_tool_status" class="form-input" value="{{ data.top_tool.status }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="form-group">
+                            <label class="form-label">월 비용</label>
+                            <input type="text" name="top_tool_monthly_cost" class="form-input" value="{{ data.top_tool.monthly_cost }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">생성 콘텐츠</label>
+                            <input type="text" name="top_tool_content_count" class="form-input" value="{{ data.top_tool.content_count }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="form-group">
+                            <label class="form-label">인스타 조회수</label>
+                            <input type="text" name="top_tool_instagram_views" class="form-input" value="{{ data.top_tool.instagram_views }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">팔로워 증가</label>
+                            <input type="text" name="top_tool_follower_increase" class="form-input" value="{{ data.top_tool.follower_increase }}">
+                        </div>
+                    </div>
+                    
+                    <div class="metric-group">
+                        <div class="form-group">
+                            <label class="form-label">ROI</label>
+                            <input type="text" name="top_tool_roi" class="form-input" value="{{ data.top_tool.roi }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">성과 분석 (HTML 사용 가능)</label>
+                    <textarea name="top_tool_analysis" class="form-textarea" rows="6">{{ data.top_tool.analysis }}</textarea>
+                </div>
+            </div>
+            
+            <!-- Tools Section -->
+            <div class="section">
+                <h2 class="section-title">🔧 주요 도구 상세</h2>
+                
+                {% for tool in data.tools %}
+                {% set i = loop.index0 %}
+                <div class="tool-card">
+                    <div class="tool-header">도구 {{ i + 1 }}: {{ tool.name }}</div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-group">
+                            <div class="form-group">
+                                <label class="form-label">도구명</label>
+                                <input type="text" name="tool_{{ i }}_name" class="form-input" value="{{ tool.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">상태</label>
+                                <input type="text" name="tool_{{ i }}_status" class="form-input" value="{{ tool.status }}">
+                            </div>
+                        </div>
+                        
+                        <div class="metric-group">
+                            <div class="form-group">
+                                <label class="form-label">월 비용</label>
+                                <input type="text" name="tool_{{ i }}_monthly_cost" class="form-input" value="{{ tool.monthly_cost }}">
+                            </div>
+                            {% if tool.projects is defined %}
+                            <div class="form-group">
+                                <label class="form-label">프로젝트</label>
+                                <input type="text" name="tool_{{ i }}_projects" class="form-input" value="{{ tool.projects }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.content is defined %}
+                            <div class="form-group">
+                                <label class="form-label">콘텐츠</label>
+                                <input type="text" name="tool_{{ i }}_content" class="form-input" value="{{ tool.content }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.utilization is defined %}
+                            <div class="form-group">
+                                <label class="form-label">활용률</label>
+                                <input type="text" name="tool_{{ i }}_utilization" class="form-input" value="{{ tool.utilization }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.frequency is defined %}
+                            <div class="form-group">
+                                <label class="form-label">사용 빈도</label>
+                                <input type="text" name="tool_{{ i }}_frequency" class="form-input" value="{{ tool.frequency }}">
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="metric-group">
+                            {% if tool.productivity is defined %}
+                            <div class="form-group">
+                                <label class="form-label">생산성</label>
+                                <input type="text" name="tool_{{ i }}_productivity" class="form-input" value="{{ tool.productivity }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.youtube_views is defined %}
+                            <div class="form-group">
+                                <label class="form-label">YouTube 조회수</label>
+                                <input type="text" name="tool_{{ i }}_youtube_views" class="form-input" value="{{ tool.youtube_views }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.real_cost is defined %}
+                            <div class="form-group">
+                                <label class="form-label">실사용 비용</label>
+                                <input type="text" name="tool_{{ i }}_real_cost" class="form-input" value="{{ tool.real_cost }}">
+                            </div>
+                            {% endif %}
+                            {% if tool.time_saving is defined %}
+                            <div class="form-group">
+                                <label class="form-label">시간 절감</label>
+                                <input type="text" name="tool_{{ i }}_time_saving" class="form-input" value="{{ tool.time_saving }}">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">평가 내용 (HTML 사용 가능)</label>
+                        <textarea name="tool_{{ i }}_evaluation" class="form-textarea" rows="3">{{ tool.evaluation }}</textarea>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Insights Section -->
+            <div class="section">
+                <h2 class="section-title">💡 핵심 인사이트</h2>
+                
+                <div class="insight-grid">
+                    <div class="insight-card">
+                        <div class="insight-title">🎯 최우선 과제</div>
+                        <div class="form-group">
+                            <textarea name="insight_priority" class="form-textarea" rows="4">{{ data.insights.priority }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-title">💰 비용 최적화</div>
+                        <div class="form-group">
+                            <textarea name="insight_cost_optimization" class="form-textarea" rows="4">{{ data.insights.cost_optimization }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-title">📈 성장 전략</div>
+                        <div class="form-group">
+                            <textarea name="insight_growth_strategy" class="form-textarea" rows="4">{{ data.insights.growth_strategy }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-title">⚡ 리스크 관리</div>
+                        <div class="form-group">
+                            <textarea name="insight_risk_management" class="form-textarea" rows="4">{{ data.insights.risk_management }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">변경사항 저장</button>
+                <a href="/" class="btn">보고서 미리보기</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 

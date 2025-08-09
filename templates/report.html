@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야나두 AI 도구 종합 브리핑 보고서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .executive-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .executive-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .key-metric {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .key-metric-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .key-metric-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .key-metric-change {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* Main Report Sections */
+        .report-header {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 4px solid #3498db;
+        }
+        
+        .report-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .report-date {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        /* Cost Analysis Table */
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .cost-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e1e8ed;
+        }
+        
+        .cost-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        
+        .cost-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Tool Performance Cards */
+        .tool-card {
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            background: #fafbfc;
+        }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .tool-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .tool-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-excellent {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-good {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-monitor {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .status-ended {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .metric-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .metric-detail {
+            font-size: 11px;
+            color: #95a5a6;
+            margin-top: 3px;
+        }
+        
+        /* Value Indicators */
+        .value-positive {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .value-negative {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .value-neutral {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Recommendation Box */
+        .recommendation-box {
+            background: #f8f9fa;
+            border-left: 3px solid #3498db;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+        
+        .recommendation-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation-text {
+            font-size: 14px;
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+        
+        /* Decision Matrix */
+        .decision-matrix {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .decision-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .decision-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .decision-table th {
+            background: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .decision-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 14px;
+        }
+        
+        .decision-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        /* Action Badges */
+        .action-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .action-expand {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .action-maintain {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .action-monitor {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .action-end {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        /* Alert Box */
+        .alert-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .alert-title {
+            font-weight: 600;
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        
+        /* Key Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .insight-card {
+            background: #f0f4f8;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .insight-content {
+            font-size: 14px;
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            color: #95a5a6;
+            font-size: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        /* Admin Link */
+        .admin-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+        
+        .admin-link:hover {
+            background: #2980b9;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .section {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+            
+            .admin-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/admin" class="admin-link">관리자 페이지</a>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <h1 class="executive-title">{{ data.executive_summary.title }}</h1>
+            <div class="executive-subtitle">{{ data.executive_summary.subtitle }}</div>
+            
+            <div class="key-metrics">
+                <div class="key-metric">
+                    <div class="key-metric-label">7월 총 투자</div>
+                    <div class="key-metric-value">{{ data.executive_summary.metrics.july_investment.value }}</div>
+                    <div class="key-metric-change">{{ data.executive_summary.metrics.july_investment.desc }}</div>
+                </div>
+                <div class="key-metric">
+                    <div class="key-metric-label">8월 예상 비용</div>
+                    <div class="key-metric-value">{{ data.executive_summary.metrics.august_cost.value }}</div>
+                    <div class="key-metric-change">{{ data.executive_summary.metrics.august_cost.desc }}</div>
+                </div>
+                <div class="key-metric">
+                    <div class="key-metric-label">총 콘텐츠 도달</div>
+                    <div class="key-metric-value">{{ data.executive_summary.metrics.total_reach.value }}</div>
+                    <div class="key-metric-change">{{ data.executive_summary.metrics.total_reach.desc }}</div>
+                </div>
+                <div class="key-metric">
+                    <div class="key-metric-label">최고 ROI</div>
+                    <div class="key-metric-value">{{ data.executive_summary.metrics.highest_roi.value }}</div>
+                    <div class="key-metric-change">{{ data.executive_summary.metrics.highest_roi.desc }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 비용 구조 분석 -->
+        <div class="section">
+            <h2 class="section-title">{{ data.cost_analysis.title }}</h2>
+            
+            <table class="cost-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>7월</th>
+                        <th>8월(예상)</th>
+                        <th>절감액</th>
+                        <th>절감률</th>
+                        <th>주요 변경사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>총 비용</strong></td>
+                        <td>₩1,158,195</td>
+                        <td>₩623,609</td>
+                        <td class="value-positive">₩534,586</td>
+                        <td class="value-positive">-46.2%</td>
+                        <td>도구 정리 및 최적화</td>
+                    </tr>
+                    <tr>
+                        <td>영상 AI</td>
+                        <td>₩556,227</td>
+                        <td>₩248,549</td>
+                        <td class="value-positive">₩307,678</td>
+                        <td class="value-positive">-55.3%</td>
+                        <td>AI 오드리 종료</td>
+                    </tr>
+                    <tr>
+                        <td>개발 도구</td>
+                        <td>₩126,453</td>
+                        <td>₩81,178</td>
+                        <td class="value-positive">₩45,275</td>
+                        <td class="value-positive">-35.8%</td>
+                        <td>API 최적화</td>
+                    </tr>
+                    <tr>
+                        <td>이미지 도구</td>
+                        <td>₩36,908</td>
+                        <td>₩36,908</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>유지</td>
+                    </tr>
+                    <tr>
+                        <td>문서 도구</td>
+                        <td>₩78,032</td>
+                        <td>₩78,032</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>관찰 중</td>
+                    </tr>
+                    <tr>
+                        <td>기타/해지</td>
+                        <td>₩360,575</td>
+                        <td>₩178,942</td>
+                        <td class="value-positive">₩181,633</td>
+                        <td class="value-positive">-50.4%</td>
+                        <td>저활용 도구 정리</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="alert-box">
+                <div class="alert-title">{{ data.cost_analysis.alert.title }}</div>
+                <div>{{ data.cost_analysis.alert.content|safe }}</div>
+            </div>
+        </div>
+        
+        <!-- 핵심 성과 도구 분석 -->
+        <div class="section">
+            <h2 class="section-title">🏆 최우수 성과 도구</h2>
+            
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-name">{{ data.top_tool.name }}</div>
+                    <span class="tool-status status-excellent">{{ data.top_tool.status }}</span>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-label">월 비용</div>
+                        <div class="metric-value">{{ data.top_tool.monthly_cost }}</div>
+                        <div class="metric-detail">개인카드 결제</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">생성 콘텐츠</div>
+                        <div class="metric-value">{{ data.top_tool.content_count }}</div>
+                        <div class="metric-detail">영상당 ₩27,616</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">인스타 조회수</div>
+                        <div class="metric-value value-positive">{{ data.top_tool.instagram_views }}</div>
+                        <div class="metric-detail">영상당 237만회</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">팔로워 증가</div>
+                        <div class="metric-value value-positive">{{ data.top_tool.follower_increase }}</div>
+                        <div class="metric-detail">인스타그램</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">기존 제작비 대체</div>
+                        <div class="metric-value">₩720만</div>
+                        <div class="metric-detail">영상당 ₩80만 기준</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">ROI</div>
+                        <div class="metric-value value-positive">{{ data.top_tool.roi }}</div>
+                        <div class="metric-detail">최고 투자효율</div>
+                    </div>
+                </div>
+                
+                <div class="recommendation-box">
+                    <div class="recommendation-title">핵심 성과 분석</div>
+                    <div class="recommendation-text">{{ data.top_tool.analysis|safe }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 도구별 상세 분석 -->
+        <div class="section">
+            <h2 class="section-title">📊 주요 도구 성과 분석</h2>
+            
+            {% for tool in data.tools %}
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-name">{{ tool.name }}</div>
+                    <span class="tool-status 
+                        {% if tool.status == '핵심 도구' %}status-excellent
+                        {% elif tool.status == '8월 종료' %}status-ended
+                        {% elif tool.status == '개선 필요' %}status-monitor
+                        {% else %}status-monitor{% endif %}">{{ tool.status }}</span>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-label">월 비용</div>
+                        <div class="metric-value">{{ tool.monthly_cost }}</div>
+                        {% if tool.name == 'Cursor AI + Claude' %}
+                        <div class="metric-detail">Cursor ₩43K + Claude ₩62K</div>
+                        {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                        <div class="metric-detail">해지 진행 중</div>
+                        {% elif tool.name == 'Midjourney' %}
+                        <div class="metric-detail">2개 계정</div>
+                        {% elif tool.name == 'Genspark AI' %}
+                        <div class="metric-detail">2개 계정</div>
+                        {% endif %}
+                    </div>
+                    <div class="metric-box">
+                        {% if tool.name == 'Cursor AI + Claude' %}
+                        <div class="metric-label">개발 프로젝트</div>
+                        <div class="metric-value">{{ tool.projects }}</div>
+                        <div class="metric-detail">TM, 블로그, 단어장</div>
+                        {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                        <div class="metric-label">제작 콘텐츠</div>
+                        <div class="metric-value">{{ tool.content }}</div>
+                        <div class="metric-detail">AI 뉴스</div>
+                        {% elif tool.name == 'Midjourney' %}
+                        <div class="metric-label">활용률</div>
+                        <div class="metric-value value-negative">{{ tool.utilization }}</div>
+                        <div class="metric-detail">200개 중 10개 사용</div>
+                        {% elif tool.name == 'Genspark AI' %}
+                        <div class="metric-label">사용 빈도</div>
+                        <div class="metric-value">{{ tool.frequency }}</div>
+                        <div class="metric-detail">PPT 제작</div>
+                        {% endif %}
+                    </div>
+                    <div class="metric-box">
+                        {% if tool.name == 'Cursor AI + Claude' %}
+                        <div class="metric-label">생산성 향상</div>
+                        <div class="metric-value value-positive">{{ tool.productivity }}</div>
+                        <div class="metric-detail">개발 속도</div>
+                        {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                        <div class="metric-label">YouTube 성과</div>
+                        <div class="metric-value">{{ tool.youtube_views }}</div>
+                        <div class="metric-detail">조회수</div>
+                        {% elif tool.name == 'Midjourney' %}
+                        <div class="metric-label">실사용 비용</div>
+                        <div class="metric-value value-negative">{{ tool.real_cost }}</div>
+                        <div class="metric-detail">비효율적</div>
+                        {% elif tool.name == 'Genspark AI' %}
+                        <div class="metric-label">시간 절감</div>
+                        <div class="metric-value value-positive">{{ tool.time_saving }}</div>
+                        <div class="metric-detail">12시간→15분</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="recommendation-box">
+                    <div class="recommendation-title">
+                        {% if tool.name == 'Cursor AI + Claude' %}평가
+                        {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}종료 사유
+                        {% elif tool.name == 'Midjourney' %}개선 방안
+                        {% elif tool.name == 'Genspark AI' %}평가
+                        {% endif %}
+                    </div>
+                    <div class="recommendation-text">{{ tool.evaluation|safe }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- 의사결정 매트릭스 -->
+        <div class="section">
+            <h2 class="section-title">📋 의사결정 매트릭스</h2>
+            
+            <div class="decision-matrix">
+                <div class="decision-header">종합 평가 및 권장 액션</div>
+                <table class="decision-table">
+                    <thead>
+                        <tr>
+                            <th>도구명</th>
+                            <th>월 비용</th>
+                            <th>성과</th>
+                            <th>권장 액션</th>
+                            <th>예상 효과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>{{ data.top_tool.name.split('(')[0].strip() }}</strong></td>
+                            <td>{{ data.top_tool.monthly_cost }}</td>
+                            <td class="value-positive">ROI {{ data.top_tool.roi }}</td>
+                            <td><span class="action-badge action-expand">즉시 확대</span></td>
+                            <td>법인카드 전환, 월 30개 제작</td>
+                        </tr>
+                        {% for tool in data.tools %}
+                        <tr>
+                            <td><strong>{{ tool.name }}</strong></td>
+                            <td>{{ tool.monthly_cost }}</td>
+                            <td>
+                                {% if tool.name == 'Cursor AI + Claude' %}
+                                <span class="value-positive">생산성 {{ tool.productivity }}↑</span>
+                                {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                                프로젝트 종료
+                                {% elif tool.name == 'Midjourney' %}
+                                <span class="value-negative">활용률 {{ tool.utilization }}</span>
+                                {% elif tool.name == 'Genspark AI' %}
+                                <span class="value-neutral">시간 {{ tool.time_saving }} 절감</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if tool.name == 'Cursor AI + Claude' %}
+                                <span class="action-badge action-maintain">유지</span>
+                                {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                                <span class="action-badge action-end">해지</span>
+                                {% elif tool.name == 'Midjourney' %}
+                                <span class="action-badge action-monitor">교육 후 재평가</span>
+                                {% elif tool.name == 'Genspark AI' %}
+                                <span class="action-badge action-monitor">3개월 관찰</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if tool.name == 'Cursor AI + Claude' %}
+                                개발 효율 지속
+                                {% elif tool.name == 'HeyGen + ElevenLabs (AI 오드리)' %}
+                                월 ₩257,678 절감
+                                {% elif tool.name == 'Midjourney' %}
+                                활용률 30% 목표
+                                {% elif tool.name == 'Genspark AI' %}
+                                활용 빈도 향상
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- 핵심 인사이트 -->
+        <div class="section">
+            <h2 class="section-title">💡 핵심 인사이트 및 액션 플랜</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-title">🎯 최우선 과제</div>
+                    <div class="insight-content">{{ data.insights.priority|safe }}</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title">💰 비용 최적화</div>
+                    <div class="insight-content">{{ data.insights.cost_optimization|safe }}</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title">📈 성장 전략</div>
+                    <div class="insight-content">{{ data.insights.growth_strategy|safe }}</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title">⚡ 리스크 관리</div>
+                    <div class="insight-content">{{ data.insights.risk_management|safe }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            이 보고서는 {{ data.executive_summary.subtitle }}에 기반하여 작성되었습니다.
+        </div>
+    </div>
+</body>
+</html> 

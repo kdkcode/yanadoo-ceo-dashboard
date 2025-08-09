@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>야나두 AI서포트팀 7월 성과 & 8월 실행계획 (CEO Brief)</title>
+  <style>
+    :root{
+      --bg:#f6f8fb; --fg:#1f2937; --muted:#6b7280; --card:#ffffff;
+      --primary:#2563eb; --success:#16a34a; --warn:#f59e0b; --danger:#dc2626; --info:#0ea5e9;
+      --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR",Helvetica,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.6}
+    .container{max-width:1200px; margin:0 auto; padding:40px 20px}
+    .pill{display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600}
+    .pill-done{background:#e8faf0; color:#166534}
+    .pill-progress{background:#eef2ff; color:#3730a3}
+    .pill-hold{background:#fff1f2; color:#be123c}
+    .pill-todo{background:#fff7ed; color:#c2410c}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px; box-shadow:0 6px 16px rgba(17,24,39,.04); margin-bottom:18px}
+    h1{font-size:32px; margin:0 0 6px 0}
+    .subtitle{color:var(--muted); margin-bottom:18px}
+    .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px}
+    .kpi{background:#0f172a; color:#fff; border-radius:14px; padding:22px}
+    .kpi .label{font-size:12px; opacity:.8; margin-bottom:6px; letter-spacing:.3px}
+    .kpi .value{font-size:28px; font-weight:700}
+    .kpi .delta{font-size:12px; opacity:.9; margin-top:4px}
+    h2{font-size:22px; margin:0 0 14px 0}
+    h3{font-size:18px; margin:0 0 8px 0}
+    .grid-2{display:grid; grid-template-columns:1.2fr .8fr; gap:16px}
+    .grid-3{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
+    .list{margin:8px 0 0 18px}
+    .list li{margin:4px 0}
+    table{width:100%; border-collapse:collapse; margin-top:10px; font-size:14px}
+    th, td{padding:10px 8px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top}
+    th{background:#f8fafc; font-size:12px; color:#64748b; text-transform:uppercase; letter-spacing:.4px}
+    tr:hover{background:#fafafa}
+    .muted{color:var(--muted)}
+    .badge{font-size:12px; font-weight:600; padding:3px 8px; border-radius:6px; display:inline-block}
+    .b-low{background:#eff6ff; color:#1d4ed8}
+    .b-mid{background:#ecfeff; color:#0e7490}
+    .b-high{background:#ecfdf5; color:#047857}
+    .b-stop{background:#fef2f2; color:#b91c1c}
+    .tag{background:#f1f5f9; color:#0f172a; border-radius:999px; padding:3px 8px; font-size:12px; margin-right:6px}
+    .callout{border-left:4px solid var(--primary); background:#eff6ff; padding:12px 14px; border-radius:6px; margin:8px 0}
+    .callout-warn{border-left-color:var(--warn); background:#fff7ed}
+    .callout-good{border-left-color:var(--success); background:#ecfdf5}
+    .matrix{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .foot{color:#94a3b8; text-align:center; font-size:12px; margin-top:26px}
+    @media (max-width:860px){.grid-2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="card" style="background:linear-gradient(135deg,#0f172a,#111827); color:#fff; border:none">
+      <h1>야나두 AI서포트팀 – 7월 성과 & 8월 실행계획</h1>
+      <div class="subtitle" style="color:#cbd5e1">CEO Brief · 기준: 2025년 7월 말</div>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">7월 과제 상태</div>
+          <div class="value">완료 4 · 진행 5 · 시작전 2 · 중단 1</div>
+          <div class="delta">총 12개 과제</div>
+        </div>
+        <div class="kpi">
+          <div class="label">핵심 임팩트(예시)</div>
+          <div class="value">PPT 제작 6h 절감/월</div>
+          <div class="delta">+ 비용 40만원 절감 (KPI 리포트)</div>
+        </div>
+        <div class="kpi">
+          <div class="label">현장 효율</div>
+          <div class="value">TM 상담 30분/인 절감</div>
+          <div class="delta">파일럿 진행 중 (컨택세일즈)</div>
+        </div>
+        <div class="kpi">
+          <div class="label">조직 과제</div>
+          <div class="value">S~D 평가체계 미정립</div>
+          <div class="delta">→ 8월 내 제도화 및 인센티브 연동</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY / WHAT / HOW -->
+    <div class="grid-2">
+      <div class="card">
+        <h2>🎯 목표 (대표 관점)</h2>
+        <div class="callout">
+          <strong>Why:</strong> 핵심 프로세스 자동화로 <u>의사결정 속도</u>와 <u>매출/비용 효율</u>을 올린다.
+        </div>
+        <div class="callout">
+          <strong>What:</strong> 12개 과제를 S~D 체계로 재정렬하고, <u>8월에 고임팩트 5건</u>을 실제 운영에 투입한다.
+        </div>
+        <div class="callout">
+          <strong>How:</strong> 평가체계 도입(인센티브 연동) + 현업 교육/템플릿 + 데이터 정확도 가드레일로 <u>빠른 배포→지속 개선</u> 사이클 고정.
+        </div>
+      </div>
+      <div class="card">
+        <h2>📌 7월 핵심 성과 요약</h2>
+        <ul class="list">
+          <li><b>경영기획 KPI PPT 자동화</b>: 월 8h → 2h, <b>6h 절감</b> + <b>비용 40만원 절감</b> (Genspark).</li>
+          <li><b>UX 라이팅 챗봇</b>: 카피 제작 1h → 30m (<span class="muted">스포츠플랫폼</span>).</li>
+          <li><b>광고 쇼츠 제작 개선</b>: AI 이미지 부분 적용으로 <b>비용 20만원 절감</b> (시간단축 미미).</li>
+          <li><b>원장 질문 챗봇</b>: <span class="muted">숫자 정확도 미흡</span>으로 <b>중단</b> (데이터 가드레일 필요성 확인).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- S~D 평가체계 -->
+    <div class="card">
+      <h2>🧭 S~D 평가체계(안) – Why·What·How에 맞춘 의사결정 룰</h2>
+      <div class="grid-3">
+        <div>
+          <h3>평가 축</h3>
+          <ul class="list">
+            <li><b>업무 핵심도</b> (KPI 직접기여)</li>
+            <li><b>부서 적극성</b> (현업 참여/도입속도)</li>
+            <li><b>개발 난이도</b> (낮을수록 가점)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>가중치 & 산식(제안)</h3>
+          <div class="callout">
+            점수 = (핵심도 50%) + (적극성 30%) + (1/난이도 20%)<br/>
+            등급: S(≥85) · A(70~84) · B(55~69) · C(40~54) · D(&lt;40/중단)
+          </div>
+        </div>
+        <div>
+          <h3>운영 원칙</h3>
+          <ul class="list">
+            <li>S/A: 즉시 확대 배포, 예산/인력 우선</li>
+            <li>B: 2주 내 개선→승격 또는 보류</li>
+            <li>C: 파일럿만 유지, 4주 후 종료 판단</li>
+            <li>D: 즉시 중단, 학습 노트만 축적</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout-warn">
+        <b>이슈:</b> 평가체계 미정립으로 직원 참여 저조. → <b>8월 내 등급체계 정식 론칭</b> 및 <b>보상 연동</b> 필요.
+      </div>
+    </div>
+
+    <!-- 과제 테이블 -->
+    <div class="card">
+      <h2>📋 7월 과제 현황 (부서별)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th><th>부서명</th><th>지원 시작</th><th>부서담당자</th><th>AI 적용 태스크</th><th>적용 방식/도구</th><th>진행 상태</th>
+            <th>부서 성과</th><th>회사 영향</th><th>부서 적극성</th><th>개발 난이도</th><th>업무 핵심도</th><th>부서 레벨</th><th>개선 포인트/차기 계획</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td>경영기획본부</td><td>6월 2주차</td><td>호</td><td>계정별 원장 질문 챗봇</td><td>openAI api, n8n, spread sheet</td>
+            <td><span class="pill pill-done">완료(중단)</span></td><td>월간 보고 파일 검색시간 3→1분</td><td>리더 보고 용이</td><td>중</td><td>상</td><td>중</td><td>중</td>
+            <td>숫자 데이터 정확도 미흡으로 신뢰성 부족, 업무 영향도 낮아 프로젝트 중단 결정</td>
+          </tr>
+          <tr>
+            <td>2</td><td>경영기획본부</td><td>7월 3주차</td><td>호, 헤스티</td><td>월별 야나두 KPI PPT 제작</td><td>genspark</td>
+            <td><span class="pill pill-done">완료</span></td><td>ppt 제작 8h→2h, 비용 40만원 절감</td><td>리더 보고 용이</td><td>중</td><td>하</td><td>하</td><td>중</td>
+            <td>Genspark 프롬프트로 PPT 자동생성 활용</td>
+          </tr>
+          <tr>
+            <td>3</td><td>자금팀</td><td>7월 1주차</td><td>써니</td><td>런웨이 분석 챗봇</td><td>notebooklm, n8n, openAI api</td>
+            <td><span class="pill pill-progress">진행중</span></td><td>월별 추가데이터 분석 2h→10m</td><td>자금상황 파악 용이</td><td>하</td><td>중</td><td>중</td><td>하</td>
+            <td>추적 지표/공식 부재 → 측정 체계 설계 필요</td>
+          </tr>
+          <tr>
+            <td>4</td><td>야핏커머스</td><td>6월 2주차</td><td>벨</td><td>광고 쇼츠 제작 개선</td><td>midjourney</td>
+            <td><span class="pill pill-done">완료</span></td><td>편집시간 단축(미미), 비용 20만원 절감</td><td>AI 이미지 <u>부분 적용</u></td><td>하</td><td>중</td><td>중</td><td>하</td>
+            <td>3D 이펙트 비숙련자도 구현 가능해진 점 확인</td>
+          </tr>
+          <tr>
+            <td>5</td><td>야핏커머스</td><td>6월 2주차</td><td>지나</td><td>리드 데이터 수집·가공·보고 자동화</td><td>—</td>
+            <td><span class="pill pill-todo">시작전</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            <td>8월: Zapier/n8n 적재 + Power BI 대시보드 + Slack 알림</td>
+          </tr>
+          <tr>
+            <td>6</td><td>야핏커머스</td><td>6월 2주차</td><td>헤이디</td><td>주간 전환 리포트 자동화/제작</td><td>—</td>
+            <td><span class="pill pill-todo">시작전</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            <td>8월: 데이터 파이프라인 정비 → 자동 리포트 배포</td>
+          </tr>
+          <tr>
+            <td>7</td><td>야핏커머스</td><td>7월 1주차</td><td>헤이디, 린</td><td>운동성향 설문지 챗봇</td><td>gpts, midjourney</td>
+            <td><span class="pill pill-hold">중단</span></td><td>설문 제작 비용 30만원 절감</td><td>랜딩에 적용해 상담 유도</td><td>상</td><td>하</td><td>하</td><td>중</td>
+            <td>인턴 업무 인수 후 개선 예정, 실제 설문 테스트 필요</td>
+          </tr>
+          <tr>
+            <td>8</td><td>스포츠플랫폼</td><td>7월 4주차</td><td>엘리스</td><td>광고 영상에 자연스러운 AI 영상 삽입</td><td>flow, midjourney</td>
+            <td><span class="pill pill-progress">진행중</span></td><td>야외촬영 빈도↓ → 시간 감소</td><td>영상 요소 제작 용이</td><td>하</td><td>하</td><td>중</td><td>하</td>
+            <td>Flow 교육을 통한 제작 노하우 전수</td>
+          </tr>
+          <tr>
+            <td>9</td><td>스포츠플랫폼</td><td>7월 3주차</td><td>클로이</td><td>광고 문구 제작 UX 라이팅 챗봇</td><td>gpts</td>
+            <td><span class="pill pill-done">완료</span></td><td>카피 제작 1h→30m</td><td>문구 제작 리드타임 감소</td><td>하</td><td>하</td><td>중</td><td>하</td>
+            <td>GPTs 교육 후 자체 UX 라이팅 챗봇 1차 구축</td>
+          </tr>
+          <tr>
+            <td>10</td><td>커머스_CRM</td><td>7월 5주차</td><td>웨인</td><td>상품정보 VBA 자동화</td><td>excel vba, gpts</td>
+            <td><span class="pill pill-progress">진행중</span></td><td>복잡 수식 최적화 → 시간 단축</td><td>반복업무 경감 → 타 업무 집중</td><td>중</td><td>중</td><td>중</td><td>하</td>
+            <td>VBA 다양한 케이스 테스트 필요</td>
+          </tr>
+          <tr>
+            <td>11</td><td>경영기획본부</td><td>7월 5주차</td><td>제니, 헤스티</td><td>상세 매출 데이터 VBA 자동화</td><td>excel vba, gpts</td>
+            <td><span class="pill pill-progress">진행중</span></td><td>시간 단축, 오류 감소, 고부가가치 업무 집중</td><td>의사결정 속도↑, 재작업↓, 자동화 자산 축적</td><td>중</td><td>상</td><td>중</td><td>하</td>
+            <td>시간 들여 단계별 개발 필요</td>
+          </tr>
+          <tr>
+            <td>12</td><td>컨택세일즈팀</td><td>6월 2주차</td><td>카밀라, 에이미</td><td>TM 성공/실패콜 AI 자동 피드백</td><td>cursor, openai api</td>
+            <td><span class="pill pill-progress">진행중</span></td><td>상담시간 인당 30분 절감</td><td>업무 개선 → 매출 증대</td><td>중</td><td>상</td><td>상</td><td>중</td>
+            <td>피드백 정확도 검증/할루시네이션 저감 지속 필요</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8월 실행계획 -->
+    <div class="card">
+      <h2>🚀 8월 실행계획 (What & How)</h2>
+      <div class="grid-3">
+        <div class="card" style="padding:16px">
+          <h3>① 리드 파이프라인 자동화 (야핏커머스)</h3>
+          <ul class="list">
+            <li>Google Form → <b>Zapier/n8n</b> 적재 → <b>Power BI</b> 대시보드 → <b>Slack</b> 알림</li>
+            <li>목표: <b>수작업 0건</b>, <b>오류율 0%</b>, 리포트 <b>실시간화</b></li>
+            <li>일정: 8/2 설계, 8/9 MVP, 8/16 운영전환</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3>② 전환 리포트 자동화 (야핏커머스)</h3>
+          <ul class="list">
+            <li>소스 정비 → 스케줄러 → 템플릿 PDF 메일 배포</li>
+            <li>지표: 전환·ROAS·세그먼트</li>
+            <li>일정: 8/6 데이터맵, 8/14 파일럿, 8/23 전사 배포</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3>③ TM 자동 피드백 (컨택세일즈)</h3>
+          <ul class="list">
+            <li>콜 스크립트 기준표 마련, <b>정확도 QA</b> & 할루시네이션 가드</li>
+            <li>지표: 상담시간, 성공율, AHT, 전환율</li>
+            <li>일정: 8/7 룰북, 8/19 파일럿, 8/30 확산</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3>④ VBA 자동화 패키지 (경영기획/CRM)</h3>
+          <ul class="list">
+            <li>공통 모듈화(로그·에러핸들링·버전관리)</li>
+            <li>교육: 파워유저 3명 지정, 2회 워크숍</li>
+            <li>일정: 8/8 모듈, 8/20 배포, 8/27 안정화</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3>⑤ S~D 평가체계 정식 론칭</h3>
+          <ul class="list">
+            <li>가중치·등급 정의 + <b>보상/OKR 연동</b></li>
+            <li>부서장 합의 → 8월 말 <b>1차 평가</b> 시행</li>
+            <li>도입 KPI: 참여율, 등급별 배포 속도</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 리스크 & 대응 -->
+    <div class="card">
+      <h2>⚠️ 리스크 & 대응</h2>
+      <div class="grid-3">
+        <div class="callout-warn"><b>데이터 정확도</b>: 숫자 오류 발생(원장 챗봇 사례) → <b>검증 레이어/샘플링</b> 필수, 임계치 미달 시 자동 중단.</div>
+        <div class="callout-warn"><b>참여 저조</b>: 평가체계 미비 → <b>S/A 보상, C/D 중단</b> 원칙 공지.</div>
+        <div class="callout-warn"><b>모델 할루시네이션</b>: TM 피드백 정확도 저하 → <b>룰베이스 + 근거출처 표기</b> 병행.</div>
+      </div>
+    </div>
+
+    <!-- 부록: 도구 운영 현황 (사용자 제공 콘텐츠 요약 포함) -->
+    <div class="card">
+      <h2>📎 부록 – 도구 운영/최적화 현황(발췌)</h2>
+      <p class="muted" style="margin-top:-4px">※ 사용·해지 현황, 비용 및 ROI 등은 제공 자료 기준 요약.</p>
+      <div class="grid-3">
+        <div>
+          <h3>영상/콘텐츠</h3>
+          <ul class="list">
+            <li>Flow: 최고 성과(ROI 높음) – 확대 검토</li>
+            <li>Midjourney: 광고 부분 활용 – 프롬프트 교육 필요</li>
+            <li>Topaz/Hitpaw: 기존 영상 화질 개선 – 재촬영 대비 절감</li>
+          </ul>
+        </div>
+        <div>
+          <h3>개발/자동화</h3>
+          <ul class="list">
+            <li>Cursor + Claude: 비개발자도 MVP 개발</li>
+            <li>OpenAI API: TM 시스템 등 핵심</li>
+            <li>Rork/Replicate: 테스트 종료</li>
+          </ul>
+        </div>
+        <div>
+          <h3>문서/음성</h3>
+          <ul class="list">
+            <li>Genspark: PPT 자동화에 유효</li>
+            <li>Tiro AI: 사용량 기반 플랜 최적화</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout-good"><b>재무 요약(예시)</b>: 중복·저활용 구독 정리로 월 수십만 원 절감, 효율 도구는 확대 유지.</div>
+    </div>
+
+    <div class="foot">© 2025 Yanadoo AI Support Team — 본 문서는 내부 경영 보고용입니다.</div>
+  </div>
+</body>
+</html>
