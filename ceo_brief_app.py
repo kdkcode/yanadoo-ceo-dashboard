@@ -99,13 +99,13 @@ DEFAULT_CEO_DATA = {
             "department": "마케팅팀",
             "s_grade_count": 1,
             "s_grade_target": 1,
-            "current_staff": "코너 (S급, 휴직중), 시에나 (도전중)",
+            "current_staff": "코너 (S급), 시에나 (도전중)",
             "main_tool": "Flow (Hailou AI Video), Flora AI, GPTs",
             "efficiency_improvement": "97%",
             "success_metric": "인스타 2,132만 조회수 + 블로그 키워드 모니터링 완료",
             "monthly_cost": "₩248,549",
             "roi": "2,797% (Flow), 개선중 (시에나 프로젝트)",
-            "next_goal": "코너 복귀 후 시에나 멘토링, Flow 바이럴 파이프라인 구축",
+            "next_goal": "코너의 시에나 멘토링, Flow 바이럴 파이프라인 구축",
             "s_grade_roadmap": "코너: 완료 / 시에나: AI 도구 숙련도 향상 필요"
         },
         {
