@@ -100,7 +100,7 @@ DEFAULT_CEO_DATA = {
             "s_grade_count": 1,
             "s_grade_target": 1,
             "current_staff": "코너 (S급), 시에나 (도전중)",
-            "main_tool": "Flow (Hailou AI Video), Flora AI, GPTs",
+            "main_tool": "Flow, ChatGPT, Midjourney",
             "efficiency_improvement": "97%",
             "success_metric": "인스타 2,132만 조회수 + 블로그 키워드 모니터링 완료",
             "monthly_cost": "₩248,549",
@@ -113,53 +113,29 @@ DEFAULT_CEO_DATA = {
             "s_grade_count": 0,
             "s_grade_target": 1,
             "current_staff": "호, 헤스티",
-            "main_tool": "Genspark AI",
+            "main_tool": "Excel VBA, Genspark AI",
             "efficiency_improvement": "75%",
-            "success_metric": "PPT 제작시간 8h→2h, 비용 40만원 절감",
+            "success_metric": "PPT 제작시간 8h→2h, VBA 자동화 진행중",
             "monthly_cost": "₩78,032",
             "roi": "500%",
-            "next_goal": "전사 PPT 자동화 시스템 구축",
-            "s_grade_roadmap": "경영 전략 수립 + AI 자동화 시스템 설계"
+            "next_goal": "Excel VBA 자동화 프로젝트 완성",
+            "s_grade_roadmap": "데이터 분석 + VBA 자동화 시스템 구축"
         },
-        {
-            "department": "커머스/개발",
-            "s_grade_count": 0,
-            "s_grade_target": 2,
-            "current_staff": "테드, 웨인",
-            "main_tool": "Cursor AI + Claude",
-            "efficiency_improvement": "200%",
-            "success_metric": "비개발자 MVP 개발, VBA 자동화",
-            "monthly_cost": "₩104,658",
-            "roi": "300%",
-            "next_goal": "AI 코딩 전문가 양성, TM 시스템 고도화",
-            "s_grade_roadmap": "복잡한 시스템 설계 + AI 개발 도구 마스터"
-        },
+
         {
             "department": "스포츠플랫폼",
             "s_grade_count": 0,
             "s_grade_target": 1,
             "current_staff": "엘리스, 클로이",
-            "main_tool": "UX 라이팅 챗봇, Flow",
-            "efficiency_improvement": "50%",
-            "success_metric": "카피 제작 1h→30m, AI 영상 삽입",
+            "main_tool": "AI 영상 제작 도구",
+            "efficiency_improvement": "준비중",
+            "success_metric": "AI 영상 삽입 및 제작 도전 예정",
             "monthly_cost": "₩25,000",
-            "roi": "150%",
-            "next_goal": "스포츠 콘텐츠 특화 AI 시스템",
-            "s_grade_roadmap": "스포츠 도메인 전문성 + 콘텐츠 자동화"
+            "roi": "예상 중",
+            "next_goal": "AI 영상 제작 기술 습득",
+            "s_grade_roadmap": "AI 영상 제작 전문성 개발"
         },
-        {
-            "department": "컨택세일즈팀",
-            "s_grade_count": 0,
-            "s_grade_target": 1,
-            "current_staff": "카밀라, 에이미",
-            "main_tool": "TM AI 피드백 시스템",
-            "efficiency_improvement": "파일럿 중",
-            "success_metric": "상담시간 인당 30분 절감 (목표)",
-            "monthly_cost": "₩15,000",
-            "roi": "예상 400%",
-            "next_goal": "AI 영업 코칭 시스템 완성",
-            "s_grade_roadmap": "고객 심리 분석 + AI 피드백 시스템 운영"
-        },
+
         {
             "department": "자금팀",
             "s_grade_count": 0,
@@ -193,7 +169,7 @@ DEFAULT_CEO_DATA = {
             "부서 적극성 (현업 참여/도입속도)",
             "개발 난이도 (낮을수록 가점)"
         ],
-        "formula": "점수 = (핵심도 50%) + (적극성 30%) + (1/난이도 20%)",
+
         "grades": {
             "S": "≥85점, 즉시 확대 배포, 예산/인력 우선",
             "A": "70~84점, 즉시 확대 배포, 예산/인력 우선", 
@@ -403,18 +379,7 @@ DEFAULT_CEO_DATA = {
             "goals": ["부서별 1명씩 S급 후보 선정", "AI 내재화 4질문 체계 교육", "월간 성과 측정"],
             "schedule": "8/5 프로그램 설계, 8/12 부서별 교육, 8/26 1차 평가"
         },
-        {
-            "title": "Flow 바이럴 콘텐츠 자동화 파이프라인",
-            "description": "코너 복귀 + 터지는 콘텐츠 자동 생성 시스템 구축",
-            "goals": ["월 30개 영상 제작 체계", "바이럴 요소 자동 분석", "트렌드 반영 파이프라인"],
-            "schedule": "8/5 트렌드 분석 시스템, 8/12 자동화 파이프라인, 8/19 대량 제작 테스트"
-        },
-        {
-            "title": "TM 자동 피드백 시스템 (컨택세일즈)",
-            "description": "콜 스크립트 기준표 마련, 정확도 QA & 할루시네이션 가드",
-            "goals": ["상담시간 30분 절감", "성공율 향상", "AI 피드백 정확도 90%"],
-            "schedule": "8/7 룰북, 8/19 파일럿, 8/30 확산"
-        },
+
         {
             "title": "Midjourney 활용률 개선",
             "description": "프롬프트 스킬 교육 및 우수사례 공유",
@@ -595,8 +560,8 @@ def get_chart_data():
     
     # 부서별 과제 분포 (바 차트)
     dept_tasks = {
-        'labels': ['마케팅팀', '커머스/개발', '경영기획본부', '기타부서'],
-        'data': [4, 3, 2, 3],
+        'labels': ['마케팅팀', '경영기획본부', '스포츠플랫폼', '기타부서'],
+        'data': [4, 2, 2, 4],
         'colors': ['#8b5cf6', '#3b82f6', '#10b981', '#6b7280']
     }
     
